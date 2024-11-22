@@ -26,7 +26,7 @@ namespace project1
             }
             Console.ReadLine();
         }
-        static void Two()
+        static void Two() //Создание функции для первода значений из десятичной в двоичную систему
         {
             Console.WriteLine("Введите число в десятичной системе исчисления");
             int a = Convert.ToInt32(Console.ReadLine());
@@ -44,7 +44,7 @@ namespace project1
             }
 
         }
-        static void Eight()
+        static void Eight() //Создание функции для первода значений из восмиричной в двоичную систему
         {
             Console.WriteLine("Введите число в десятичной cистеме исчисления");
             int a = Convert.ToInt32(Console.ReadLine());
