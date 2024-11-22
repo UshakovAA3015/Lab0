@@ -9,33 +9,57 @@ namespace project1
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {            //Сортировка массива чисел методом  "пуырька"
-            int element = 10;
-            int[] arr;
-            arr = new int[element];
-            Random r = new Random();
-            for (int j = 0; j < element; j++)  // Цикл задания случайных переменны в  массив
+        static void Main()
+        {
+            // 9.9 Составить программу, которая число, заданное в десятичной системе счисления, переведет в: а) двоичную систему счисления; б) восьмеричную;   
+            Console.WriteLine("Выберите в какую систему производить перевод:");
+            Console.WriteLine("1 - Преревод в двоичную систему");
+            Console.WriteLine("2 - Перевод в восмиричную систему");
+            int a = Convert.ToInt32(Console.ReadLine());
+            if (a == 1)
             {
-                arr[j] = r.Next(1, 200);
-                Console.WriteLine(arr[j]);
+                Two();
             }
-            int temp = 0;
-            for (int write = 0; write < arr.Length; write++)
+            if (a == 2)
             {
-                for (int sort = 0; sort < arr.Length - 1; sort++)
-                {
-                    if (arr[sort] > arr[sort + 1])
-                    {
-                        temp = arr[sort + 1];
-                        arr[sort + 1] = arr[sort];
-                        arr[sort] = temp;
-                    }
-                }
+                Eight();
             }
-            for (int i = 0; i < arr.Length; i++)
-                Console.Write(arr[i] + " ");
-            Console.ReadKey();
+            Console.ReadLine();
+        }
+        static void Two()
+        {
+            Console.WriteLine("Введите число в десятичной системе исчисления");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int[] ch = new int[5];
+            int b = 2;
+            for (int i = 0; i < 5; i++)
+            {
+                ch[i] = ((int)(a % b));
+                a = (int)(a / b);
+            }
+            Console.WriteLine($"Двоичное числло ");
+            for (int j = ch.Length - 1; j >= 0; j--)
+            {
+                Console.Write(ch[j] + "");
+            }
+
+        }
+        static void Eight()
+        {
+            Console.WriteLine("Введите число в десятичной cистеме исчисления");
+            int a = Convert.ToInt32(Console.ReadLine());
+            int[] ch = new int[5];
+            int b = 8;
+            for (int i = 0; i < 5; i++)
+            {
+                ch[i] = ((int)(a % b));
+                a = (int)(a / b);
+            }
+            Console.WriteLine($"Число в восмиричной системе исчисления ");
+            for (int j = ch.Length - 1; j >= 0; j--)
+            {
+                Console.Write(ch[j] + "");
+            }
         }
     }
 }
