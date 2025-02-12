@@ -3,7 +3,7 @@
     /// <summary>
     /// Варианты языков.
     /// </summary>
-    public enum Languege
+    public enum Language
     {
         /// <summary>
         /// Русский язык.
