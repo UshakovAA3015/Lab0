@@ -1,8 +1,6 @@
-﻿using System.Xml.Linq;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
-using System.Collections.Generic;
 
 namespace Model
 {
@@ -143,7 +141,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Method which allows to enter a random person.
+        /// Метод, позволяющий ввести случайную персону.
         /// </summary>
         /// <returns>Random person.</returns>
         public static Person GetRandomPerson()
