@@ -100,7 +100,14 @@ namespace ConsoleApp_LAB1
             _ = Console.ReadKey();
 
             var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.ValuesOfPerson());
+            Console.WriteLine(inputPerson.ValuesOfList());
+
+            // Проверка случайной персоны
+            _ = Console.ReadKey();
+
+            Console.Write("Random person is: ");
+            var randomPerson = Person.GetRandomPerson();
+            Console.WriteLine(randomPerson.ValuesOfList());
         }
         /// <summary>
         /// Функция, позволяющая распечатать список людей.
@@ -118,7 +125,7 @@ namespace ConsoleApp_LAB1
                 for (int i = 0; i < personList.NumberOfPersons(); i++)
                 {
                     var tmpPerson = personList.SearchPerson(i);
-                    Console.WriteLine(tmpPerson.ValuesOfPerson());
+                    Console.WriteLine(tmpPerson.ValuesOfList());
                 }
             }
             else

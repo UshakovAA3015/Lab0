@@ -141,6 +141,48 @@ namespace Model
             Gender = gender;
 
         }
+
+        /// <summary>
+        /// Method which allows to enter a random person.
+        /// </summary>
+        /// <returns>Random person.</returns>
+        public static Person GetRandomPerson()
+        {
+            string[] maleNames =
+            {
+                "Alex", "Tom", "John", "Vlad", "Eugene",
+                "Viktor", "Ivan", "Petr", "Khariton"
+            };
+
+            string[] femaleNames =
+            {
+                "Darya", "Valentina", "Varvara", "Julia", "Alyona",
+                "Elena", "Katerine", "Olga", "Sofia"
+            };
+
+            string[] surnames =
+            {
+                "Abramson", "Alford", "Anderson", "Bates", "Bethel",
+                "Becker", "Richards", "Pearcy", "Peterson", "Philips"
+            };
+
+            var random = new Random();
+            var tmpNumber = random.Next(1, 3);
+
+            Gender tmpGender = tmpNumber == 1
+                ? Gender.Male
+                : Gender.Female;
+
+            string tmpName = tmpGender == Gender.Male
+                ? maleNames[random.Next(maleNames.Length)]
+                : femaleNames[random.Next(femaleNames.Length)];
+
+            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var tmpAge = random.Next(MinAge, MaxAge);
+
+            return new Person(tmpName, tmpSurname, tmpAge, tmpGender);
+        }
+
         /// <summary>
         /// Проверка языка ввода.
         /// </summary>
@@ -196,7 +238,7 @@ namespace Model
         /// <summary>
         /// Создает набор значений для вывода в консоль.
         /// </summary>
-        public string ValuesOfPerson()
+        public string ValuesOfList()
         {
             return $"{Name} {Surname}; Возраст - {Age}; Пол - {Gender}";
         }
