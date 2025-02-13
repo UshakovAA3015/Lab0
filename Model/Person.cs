@@ -2,6 +2,7 @@
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace Model
 {
@@ -47,7 +48,7 @@ namespace Model
         /// <param name="surname">Фамилия персоны.</param>
         /// <param name="age">Возраст персоны.</param>
         /// <param name="gender">Пол персоны.</param>
-         
+
         /// <summary>
         /// Ввод имени персоны.
         /// </summary>
@@ -93,7 +94,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Ввод возраств персоны.
+        /// Ввод возраста персоны.
         /// </summary>
         public int Age
         {
@@ -141,7 +142,7 @@ namespace Model
 
         }
         /// <summary>
-        /// Проверка языка строки.
+        /// Проверка языка ввода.
         /// </summary>
         /// <param name="name">Строка.</param>
         private static Language CheckStringLanguage(string name)
@@ -197,7 +198,7 @@ namespace Model
         /// </summary>
         public string ValuesOfPerson()
         {
-            return ""+Name+" "+Surname+" "+Age+" "+Gender;
+            return $"{Name} {Surname}; Возраст - {Age}; Пол - {Gender}";
         }
 
         /// <summary>
@@ -211,6 +212,12 @@ namespace Model
                 ToTitleCase(word.ToLower());
         }
 
-    }
+        /// <summary>
+        /// Инициализация нового экземпляра класаа <see cref="Person"/> .
+        /// </summary>
+        public Person()
+        { }
 
+       
+    }
 }

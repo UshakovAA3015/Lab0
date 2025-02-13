@@ -108,5 +108,8 @@ namespace Model
         /// </summary>
         /// <returns>Количество персон в массиве.</returns>
         public int NumberOfPersons() => ArrayOfPersons.Length;
+
+
+
     }
 }

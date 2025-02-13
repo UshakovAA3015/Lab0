@@ -95,6 +95,12 @@ namespace ConsoleApp_LAB1
             Console.WriteLine("List of youth:");
             PrintList(youth);
             Console.WriteLine();
+
+            // Проверка ввода персоны
+            _ = Console.ReadKey();
+
+            var inputPerson = InputPersonByConsole();
+            Console.WriteLine(inputPerson.ValuesOfPerson());
         }
         /// <summary>
         /// Функция, позволяющая распечатать список людей.
@@ -120,5 +126,97 @@ namespace ConsoleApp_LAB1
                 Console.WriteLine("List is empty.");
             }
         }
+
+        /// <summary>
+        /// Метод, позволяющий вводить информацию с помощью консоли.
+        /// </summary>
+        /// <returns>Экземпляр класса Person.</returns>
+        /// <exception cref="ArgumentException">Только числа.</exception>
+        public static Person InputPersonByConsole()
+        {
+            var person = new Person();
+
+            var actionList = new List<(Action<string>, string)>
+            {
+                (
+                new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    person.Name = Console.ReadLine();
+                }), "name"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    person.Surname = Console.ReadLine();
+                }), "surname"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write($"Enter student {property}: ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                    person.Age = tmpAge;
+                }), "age"),
+
+                (new Action<string>((string property) =>
+                {
+                    Console.Write
+                        ($"Enter student {property} (1 - Male or 2 - Female): ");
+                    _ = int.TryParse(Console.ReadLine(), out int tmpGender);
+                    if (tmpGender < 1 || tmpGender > 2)
+                    {
+                        throw new IndexOutOfRangeException
+                            ("Number must be in range [1; 2].");
+                    }
+
+                    var realGender = tmpGender == 1
+                        ? Gender.Male
+                        : Gender.Female;
+                    person.Gender = realGender;
+                }), "gender")
+            };
+
+            foreach (var action in actionList)
+            {
+                ActionHandler(action.Item1, action.Item2);
+            }
+
+            return person;
+        }
+
+        /// <summary>
+        /// Метод, который используется для выполнения действий со списком.
+        /// </summary>
+        /// <param name="action">Определенное действие.</param>
+        /// <param name="propertyName">Дополнительный параметр
+        /// для исключения.</param>
+        private static void ActionHandler(Action<string> action, string propertyName)
+        {
+            while (true)
+            {
+                try
+                {
+                    action.Invoke(propertyName);
+                    break;
+                }
+                catch (Exception exception)
+                {
+                    if (exception.GetType()
+                        == typeof(IndexOutOfRangeException)
+                        || exception.GetType() == typeof(FormatException)
+                        || exception.GetType() == typeof(ArgumentException))
+                    {
+                        Console.WriteLine($"Incorrect {propertyName}." +
+                        $" Error: {exception.Message}" +
+                        $"Please, enter the {propertyName} again.");
+                    }
+                    else
+                    {
+                        throw exception;
+                    }
+                }
+            }
+        }
     }
+    
 }
