@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 namespace ConsoleApp_LAB1
 {
+    //TODO: RSDN
+    //TODO: XML
     class Program
     {
         /// <summary>
@@ -106,6 +108,7 @@ namespace ConsoleApp_LAB1
             var randomPerson = Person.GetRandomPerson();
             Console.WriteLine(randomPerson.ValuesOfList());
         }
+
         /// <summary>
         /// Функция, позволяющая распечатать список людей.
         /// </summary>
@@ -205,14 +208,13 @@ namespace ConsoleApp_LAB1
                 }
                 catch (Exception exception)
                 {
-                    if (exception.GetType()
-                        == typeof(IndexOutOfRangeException)
+                    if (exception.GetType() == typeof(IndexOutOfRangeException)
                         || exception.GetType() == typeof(FormatException)
                         || exception.GetType() == typeof(ArgumentException))
                     {
                         Console.WriteLine($"Incorrect {propertyName}." +
                         $" Error: {exception.Message}" +
-                        $"Please, enter the {propertyName} again.");
+                        $" Please, enter the {propertyName} again.");
                     }
                     else
                     {
@@ -221,6 +223,5 @@ namespace ConsoleApp_LAB1
                 }
             }
         }
-    }
-    
+    }    
 }

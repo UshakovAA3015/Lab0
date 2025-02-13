@@ -115,6 +115,7 @@ namespace Model
             }
         }
 
+        //TODO: to autoproperty
         /// <summary>
         /// Ввод пола персоны.
         /// </summary>
@@ -130,14 +131,14 @@ namespace Model
                 _gender = value;
             }
         }
-        public Person
-            (string name, string surname, int age, Gender gender)
+
+        //TODO: XML
+        public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
             Surname = surname;
             Age = age;
             Gender = gender;
-
         }
 
         /// <summary>
@@ -233,6 +234,7 @@ namespace Model
             }
         }
 
+        //TODO: rename
         /// <summary>
         /// Создает набор значений для вывода в консоль.
         /// </summary>
@@ -252,12 +254,11 @@ namespace Model
                 ToTitleCase(word.ToLower());
         }
 
+        //TODO: rewrite
         /// <summary>
         /// Инициализация нового экземпляра класаа <see cref="Person"/> .
         /// </summary>
         public Person()
-        { }
-
-       
+        { }       
     }
 }

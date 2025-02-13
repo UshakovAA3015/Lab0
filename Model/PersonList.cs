@@ -7,6 +7,7 @@ namespace Model
     /// </summary>
     public class PersonList
     {
+        //TODO: RSDN
         /// <summary>
         /// Массив персон.
         /// </summary>
@@ -108,8 +109,6 @@ namespace Model
         /// </summary>
         /// <returns>Количество персон в массиве.</returns>
         public int NumberOfPersons() => ArrayOfPersons.Length;
-
-
 
     }
 }
