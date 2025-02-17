@@ -6,7 +6,10 @@ namespace ConsoleApp_LAB1
 {
     //TODO: RSDN
     //TODO: XML
-    class Program
+    /// <summary>
+    /// Выполняемая часть программы
+    /// </summary>
+    public class Program
     {
         /// <summary>
         /// Class Main.
@@ -42,6 +45,7 @@ namespace ConsoleApp_LAB1
             youth.AddPerson(ush3);
 
             // Вывод списков в консоль
+            Console.WriteLine("Для продолжения нажмите клавишу ENTER");
             _ = Console.ReadKey();
             Console.WriteLine("List of olds:");
             PrintList(olds);
@@ -99,14 +103,14 @@ namespace ConsoleApp_LAB1
             _ = Console.ReadKey();
 
             var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.ValuesOfList());
+            Console.WriteLine(inputPerson.PersonInformation());
 
             // Проверка случайной персоны
             _ = Console.ReadKey();
 
             Console.Write("Random person is: ");
             var randomPerson = Person.GetRandomPerson();
-            Console.WriteLine(randomPerson.ValuesOfList());
+            Console.WriteLine(randomPerson.PersonInformation());
         }
 
         /// <summary>
@@ -125,7 +129,7 @@ namespace ConsoleApp_LAB1
                 for (int i = 0; i < personList.NumberOfPersons(); i++)
                 {
                     var tmpPerson = personList.SearchPerson(i);
-                    Console.WriteLine(tmpPerson.ValuesOfList());
+                    Console.WriteLine(tmpPerson.PersonInformation());
                 }
             }
             else
@@ -150,12 +154,20 @@ namespace ConsoleApp_LAB1
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Name = Console.ReadLine();
+                    if (person.Name=="")
+                    {
+                        throw new IndexOutOfRangeException("");
+                    }
                 }), "name"),
 
                 (new Action<string>((string property) =>
                 {
                     Console.Write($"Enter student {property}: ");
                     person.Surname = Console.ReadLine();
+                  if (person.Surname=="")
+                    {
+                        throw new IndexOutOfRangeException("");
+                    }
                 }), "surname"),
 
                 (new Action<string>((string property) =>
@@ -173,7 +185,7 @@ namespace ConsoleApp_LAB1
                     if (tmpGender < 1 || tmpGender > 2)
                     {
                         throw new IndexOutOfRangeException
-                            ("Number must be in range [1; 2].");
+                            ("Чило должно быть в диапазоне [1; 2].");
                     }
 
                     var realGender = tmpGender == 1
@@ -213,8 +225,8 @@ namespace ConsoleApp_LAB1
                         || exception.GetType() == typeof(ArgumentException))
                     {
                         Console.WriteLine($"Incorrect {propertyName}." +
-                        $" Error: {exception.Message}" +
-                        $" Please, enter the {propertyName} again.");
+                        $" Ошибка: {exception.Message}" +
+                        $" Пожалуйста, введите {propertyName} снова.");
                     }
                     else
                     {

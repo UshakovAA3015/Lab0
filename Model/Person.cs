@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace Model
 {
@@ -109,8 +110,8 @@ namespace Model
                 }
                 else
                 {
-                    throw new IndexOutOfRangeException("Age value must" +
-                          $" be in range [{MinAge}:{MaxAge}].");
+                    throw new IndexOutOfRangeException("Введите в " +
+                          $" пределах [{MinAge}:{MaxAge}].");
                 }
             }
         }
@@ -119,20 +120,12 @@ namespace Model
         /// <summary>
         /// Ввод пола персоны.
         /// </summary>
-        public Gender Gender
-        {
-            get
-            {
-                return _gender;
-            }
-
-            set
-            {
-                _gender = value;
-            }
-        }
+        public  Gender Gender { get; set; }
 
         //TODO: XML
+        /// <summary>
+        /// Конструктор класса Person.
+        /// </summary>
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
@@ -228,8 +221,8 @@ namespace Model
 
                 if (nameLanguage != surnameLanguage)
                 {
-                    throw new FormatException("Name and Surname must" +
-                            " be only in one language.");
+                    throw new FormatException("Имя и фамилия" +
+                            " должны быть на одном языке.");
                 }
             }
         }
@@ -238,7 +231,7 @@ namespace Model
         /// <summary>
         /// Создает набор значений для вывода в консоль.
         /// </summary>
-        public string ValuesOfList()
+        public string PersonInformation()
         {
             return $"{Name} {Surname}; Возраст - {Age}; Пол - {Gender}";
         }
@@ -259,6 +252,12 @@ namespace Model
         /// Инициализация нового экземпляра класаа <see cref="Person"/> .
         /// </summary>
         public Person()
-        { }       
+        {
+            Name = "";
+            Surname = "";
+            Age = Convert.ToInt32("18");
+            Gender = (Gender)Convert.ToInt32("1");
+
+        }       
     }
 }
