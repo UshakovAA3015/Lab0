@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 namespace ConsoleApp_LAB1
 {
-    //TODO: RSDN
-    //TODO: XML
     /// <summary>
     /// Выполняемая часть программы
     /// </summary>
@@ -185,7 +183,7 @@ namespace ConsoleApp_LAB1
                     if (tmpGender < 1 || tmpGender > 2)
                     {
                         throw new IndexOutOfRangeException
-                            ("Чило должно быть в диапазоне [1; 2].");
+                            ("Чиcло должно быть в диапазоне [1; 2].");
                     }
 
                     var realGender = tmpGender == 1

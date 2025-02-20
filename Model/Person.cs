@@ -116,7 +116,6 @@ namespace Model
             }
         }
 
-        //TODO: to autoproperty
         /// <summary>
         /// Ввод пола персоны.
         /// </summary>
@@ -253,6 +252,7 @@ namespace Model
         /// </summary>
         public Person()
         {
+            //TODO: duplication
             Name = "";
             Surname = "";
             Age = Convert.ToInt32("18");
