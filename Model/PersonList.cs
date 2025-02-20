@@ -7,11 +7,11 @@ namespace Model
     /// </summary>
     public class PersonList
     {
-        //TODO: RSDN
+        //TODO: RSDN+
         /// <summary>
         /// Массив персон.
         /// </summary>
-        private Person[] ArrayOfPersons = new Person[0];
+        private Person[] _arrayOfPersons = new Person[0];
 
         /// <summary>
         /// Функция добавления персоны в конец массива.
@@ -19,9 +19,9 @@ namespace Model
         /// <param name="person">Персона была добавлена.</param>
         public void AddPerson(Person person)
         {
-            var indexOfNewPerson = ArrayOfPersons.Length;
-            Array.Resize(ref ArrayOfPersons, indexOfNewPerson + 1);
-            ArrayOfPersons[indexOfNewPerson] = person;
+            var indexOfNewPerson = _arrayOfPersons.Length;
+            Array.Resize(ref _arrayOfPersons, indexOfNewPerson + 1);
+            _arrayOfPersons[indexOfNewPerson] = person;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Model
         /// за рамки допустимых значений.</exception>
         private void IsIndexInArray(int index)
         {
-            if (index < 0 || index >= ArrayOfPersons.Length)
+            if (index < 0 || index >= _arrayOfPersons.Length)
             {
                 throw new IndexOutOfRangeException
                     ("Index is out of the bounds.");
@@ -47,12 +47,12 @@ namespace Model
         {
             IsIndexInArray(index);
 
-            for (int i = index; i < ArrayOfPersons.Length - 1; i++)
+            for (int i = index; i < _arrayOfPersons.Length - 1; i++)
             {
-                ArrayOfPersons[i] = ArrayOfPersons[i + 1];
+                _arrayOfPersons[i] = _arrayOfPersons[i + 1];
             }
 
-            Array.Resize(ref ArrayOfPersons, ArrayOfPersons.Length - 1);
+            Array.Resize(ref _arrayOfPersons, _arrayOfPersons.Length - 1);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Model
         /// <param name="person">Персона была удалена.</param>
         public void DeletePerson(Person person)
         {
-            int index = Array.IndexOf(ArrayOfPersons, person);
+            int index = Array.IndexOf(_arrayOfPersons, person);
             DeletePersonByIndex(index);
         }
 
@@ -73,7 +73,7 @@ namespace Model
         public Person SearchPerson(int index)
         {
             IsIndexInArray(index);
-            return ArrayOfPersons[index];
+            return _arrayOfPersons[index];
         }
 
         /// <summary>
@@ -85,9 +85,9 @@ namespace Model
         public int SearchIndexOfPerson(Person person)
         {
             int index = -1;
-            for (int i = 0; i < ArrayOfPersons.Length; i++)
+            for (int i = 0; i < _arrayOfPersons.Length; i++)
             {
-                if (ArrayOfPersons[i] == person)
+                if (_arrayOfPersons[i] == person)
                 {
                     index = i;
                 }
@@ -101,14 +101,14 @@ namespace Model
         /// </summary>
         public void ClearList()
         {
-            Array.Resize(ref ArrayOfPersons, 0);
+            Array.Resize(ref _arrayOfPersons, 0);
         }
 
         /// <summary>
         /// Метод показывающий количество персон в массиве.
         /// </summary>
         /// <returns>Количество персон в массиве.</returns>
-        public int NumberOfPersons() => ArrayOfPersons.Length;
+        public int NumberOfPersons() => _arrayOfPersons.Length;
 
     }
 }

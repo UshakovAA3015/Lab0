@@ -101,14 +101,14 @@ namespace ConsoleApp_LAB1
             _ = Console.ReadKey();
 
             var inputPerson = InputPersonByConsole();
-            Console.WriteLine(inputPerson.PersonInformation());
+            Console.WriteLine(inputPerson.GetInformation());
 
             // Проверка случайной персоны
             _ = Console.ReadKey();
 
             Console.Write("Random person is: ");
             var randomPerson = Person.GetRandomPerson();
-            Console.WriteLine(randomPerson.PersonInformation());
+            Console.WriteLine(randomPerson.GetInformation());
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace ConsoleApp_LAB1
                 for (int i = 0; i < personList.NumberOfPersons(); i++)
                 {
                     var tmpPerson = personList.SearchPerson(i);
-                    Console.WriteLine(tmpPerson.PersonInformation());
+                    Console.WriteLine(tmpPerson.GetInformation());
                 }
             }
             else

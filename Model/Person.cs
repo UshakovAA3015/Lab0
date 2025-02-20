@@ -121,10 +121,15 @@ namespace Model
         /// </summary>
         public  Gender Gender { get; set; }
 
-        //TODO: XML
+        //TODO: XML+
         /// <summary>
-        /// Конструктор класса Person.
+        /// Создание конструктора класса
         /// </summary>
+        /// <param name="name">Имя персоны.</param>
+        /// <param name="surname">Фамилия персоны.</param>
+        /// <param name="age">Возраст персоны.</param>
+        /// <param name="gender">Пол персоны.</param>
+
         public Person(string name, string surname, int age, Gender gender)
         {
             Name = name;
@@ -226,11 +231,11 @@ namespace Model
             }
         }
 
-        //TODO: rename
+        //TODO: rename+
         /// <summary>
         /// Создает набор значений для вывода в консоль.
         /// </summary>
-        public string PersonInformation()
+        public string GetInformation()
         {
             return $"{Name} {Surname}; Возраст - {Age}; Пол - {Gender}";
         }
@@ -246,18 +251,12 @@ namespace Model
                 ToTitleCase(word.ToLower());
         }
 
-        //TODO: rewrite
+        //TODO: rewrite+
         /// <summary>
         /// Инициализация нового экземпляра класаа <see cref="Person"/> .
         /// </summary>
-        public Person()
+        public Person() : this(string.Empty, string.Empty, 18, Gender.Male)
         {
-            //TODO: duplication
-            Name = "";
-            Surname = "";
-            Age = Convert.ToInt32("18");
-            Gender = (Gender)Convert.ToInt32("1");
-
         }       
     }
 }
