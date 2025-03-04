@@ -104,14 +104,14 @@ namespace Model
 
             set
             {
-                if (value >= MinAge && value <= MaxAge)
+                if (value > MinAge && value < MaxAge)
                 {
                     _age = value;
                 }
                 else
                 {
                     throw new IndexOutOfRangeException("Введите в " +
-                          $" пределах [{MinAge}:{MaxAge}].");
+                          $" пределах ({MinAge}:{MaxAge}).");
                 }
             }
         }
