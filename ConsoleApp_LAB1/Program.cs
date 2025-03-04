@@ -171,7 +171,12 @@ namespace ConsoleApp_LAB1
                 (new Action<string>((string property) =>
                 {
                     Console.Write($"Enter student {property}: ");
-                    _ = int.TryParse(Console.ReadLine(), out int tmpAge);
+                    if (!int.TryParse(Console.ReadLine(), out int tmpAge))
+                    {                       
+                        throw new FormatException
+                           ($"Возраст - это число " +
+                           $"от {Person.MinAge} до {Person.MaxAge}");
+                    }
                     person.Age = tmpAge;
                 }), "age"),
 

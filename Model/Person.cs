@@ -33,12 +33,12 @@ namespace Model
         /// <summary>
         /// Минимальное значение возраста.
         /// </summary>
-        private const int MinAge = 0;
+        public const int MinAge = 0;
 
         /// <summary>
         /// Максимальное значение возраста.
         /// </summary>
-        private const int MaxAge = 122;
+        public const int MaxAge = 122;
 
         /// <summary>
         /// Констректор класса Person.
@@ -104,14 +104,14 @@ namespace Model
 
             set
             {
-                if (value > MinAge && value < MaxAge)
+                if (value >= MinAge && value <= MaxAge)
                 {
                     _age = value;
                 }
                 else
                 {
                     throw new IndexOutOfRangeException("Введите в " +
-                          $" пределах ({MinAge}:{MaxAge}).");
+                          $" пределах [{MinAge}:{MaxAge}].");
                 }
             }
         }
