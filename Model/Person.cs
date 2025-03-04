@@ -121,7 +121,6 @@ namespace Model
         /// </summary>
         public  Gender Gender { get; set; }
 
-        //TODO: XML+
         /// <summary>
         /// Создание конструктора класса
         /// </summary>
@@ -231,7 +230,6 @@ namespace Model
             }
         }
 
-        //TODO: rename+
         /// <summary>
         /// Создает набор значений для вывода в консоль.
         /// </summary>
@@ -251,7 +249,6 @@ namespace Model
                 ToTitleCase(word.ToLower());
         }
 
-        //TODO: rewrite+
         /// <summary>
         /// Инициализация нового экземпляра класаа <see cref="Person"/> .
         /// </summary>
