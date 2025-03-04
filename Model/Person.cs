@@ -38,7 +38,7 @@ namespace Model
         /// <summary>
         /// Максимальное значение возраста.
         /// </summary>
-        private const int MaxAge = 150;
+        private const int MaxAge = 122;
 
         /// <summary>
         /// Констректор класса Person.
@@ -104,7 +104,7 @@ namespace Model
 
             set
             {
-                if (value > MinAge && value < MaxAge)
+                if (value >= MinAge && value <= MaxAge)
                 {
                     _age = value;
                 }
