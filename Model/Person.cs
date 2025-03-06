@@ -26,11 +26,6 @@ namespace Model
         private int _age;
 
         /// <summary>
-        /// Пол персоны.
-        /// </summary>
-        private Gender _gender;
-
-        /// <summary>
         /// Минимальное значение возраста.
         /// </summary>
         public const int MinAge = 0;
@@ -119,7 +114,7 @@ namespace Model
         /// <summary>
         /// Ввод пола персоны.
         /// </summary>
-        public  Gender Gender { get; set; }
+        public Gender Gender { get; set; }
 
         /// <summary>
         /// Создание конструктора класса
