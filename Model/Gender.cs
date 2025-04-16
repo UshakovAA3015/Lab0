@@ -1,18 +1,23 @@
 ﻿namespace Model
 {
     /// <summary>
-    /// Варианты пола персоны.
+    /// Variants of person's gender.
     /// </summary>
     public enum Gender
     {
         /// <summary>
-        /// Муржской пол.
+        /// Male gender.
         /// </summary>
         Male,
 
         /// <summary>
-        /// Женский пол.
+        /// Female gender.
         /// </summary>
-        Female
+        Female,
+
+        /// <summary>
+        /// Unknown gender.
+        /// </summary>
+        Unknown
     }
 }

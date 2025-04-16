@@ -1,22 +1,22 @@
 ﻿namespace Model
 {
     /// <summary>
-    /// Варианты языков.
+    /// Variants of languages.
     /// </summary>
     public enum Language
     {
         /// <summary>
-        /// Русский язык.
-        /// </summary>
-        RU,
-
-        /// <summary>
-        /// Английский язык.
+        /// English language.
         /// </summary>
         EN,
 
         /// <summary>
-        /// Язык не определен.
+        /// Russian language.
+        /// </summary>
+        RU,
+
+        /// <summary>
+        /// The language is not recognized.
         /// </summary>
         Unknown
     }

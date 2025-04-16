@@ -3,20 +3,20 @@
 namespace Model
 {
     /// <summary>
-    /// Класс, который описывает список персон (в виде массива).
+    /// Class which describes list of persons (as an array).
     /// </summary>
     public class PersonList
     {
         /// <summary>
-        /// Массив персон.
+        /// Array of persons.
         /// </summary>
-        private Person[] _arrayOfPersons = new Person[0];
+        private PersonBase[] _arrayOfPersons = new PersonBase[0];
 
         /// <summary>
-        /// Функция добавления персоны в конец массива.
+        /// Function for add a person at the end of the array.
         /// </summary>
-        /// <param name="person">Персона была добавлена.</param>
-        public void AddPerson(Person person)
+        /// <param name="person">The person being added.</param>
+        public void AddPerson(PersonBase person)
         {
             var indexOfNewPerson = _arrayOfPersons.Length;
             Array.Resize(ref _arrayOfPersons, indexOfNewPerson + 1);
@@ -24,11 +24,11 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод, проверяющий правильность входного индекса.
+        /// Method that checks input index for valid.
         /// </summary>
-        /// <param name="index">Входной индекс.</param>
-        /// <exception cref="IndexOutOfRangeException">Индекс выходит
-        /// за рамки допустимых значений.</exception>
+        /// <param name="index">Input index.</param>
+        /// <exception cref="IndexOutOfRangeException">Index is out
+        /// of the bounds.</exception>
         private void IsIndexInArray(int index)
         {
             if (index < 0 || index >= _arrayOfPersons.Length)
@@ -39,9 +39,9 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод удаляющий персону по вводимому индексу.
+        /// Method that deletes person by input index.
         /// </summary>
-        /// <param name="index">Входной индекс.</param>
+        /// <param name="index">Input index.</param>
         public void DeletePersonByIndex(int index)
         {
             IsIndexInArray(index);
@@ -55,33 +55,33 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод удаляющий персону.
+        /// Method that deletes person.
         /// </summary>
-        /// <param name="person">Персона была удалена.</param>
-        public void DeletePerson(Person person)
+        /// <param name="person">The person being deleted.</param>
+        public void DeletePerson(PersonBase person)
         {
             int index = Array.IndexOf(_arrayOfPersons, person);
             DeletePersonByIndex(index);
         }
 
         /// <summary>
-        /// Метод находящий персноу в массиве по индексу.
+        /// Method that finds person in array by index.
         /// </summary>
-        /// <param name="index">Индекс персоны в массиве.</param>
-        /// <returns>Персона из массива.</returns>
-        public Person SearchPerson(int index)
+        /// <param name="index">Index of the person in array.</param>
+        /// <returns>PersonBase from the array.</returns>
+        public PersonBase SearchPerson(int index)
         {
             IsIndexInArray(index);
             return _arrayOfPersons[index];
         }
 
         /// <summary>
-        /// Метод находящий индекс персоны в массиве.
+        /// Method that finds index of person in array.
         /// </summary>
-        /// <param name="person">Персона в массиве.</param>
-        /// <returns>Индекс персоны вмассиве.
-        /// При возврате -1 персоны не существует.</returns>
-        public int SearchIndexOfPerson(Person person)
+        /// <param name="person">PersonBase in array.</param>
+        /// <returns>Index of person in array.
+        /// If it returns -1 person doesn't exist.</returns>
+        public int SearchIndexOfPerson(PersonBase person)
         {
             int index = -1;
             for (int i = 0; i < _arrayOfPersons.Length; i++)
@@ -96,7 +96,7 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод позволяющий очитсить лист(в массиве).
+        /// Method than allows to clear the list (as an array).
         /// </summary>
         public void ClearList()
         {
@@ -104,10 +104,9 @@ namespace Model
         }
 
         /// <summary>
-        /// Метод показывающий количество персон в массиве.
+        /// Method that shows the number of persons.
         /// </summary>
-        /// <returns>Количество персон в массиве.</returns>
-        public int NumberOfPersons() => _arrayOfPersons.Length;
-
+        /// <returns>Number of persons in list.</returns>
+        public int NumberOfPersons => _arrayOfPersons.Length;
     }
 }
