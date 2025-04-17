@@ -11,6 +11,7 @@ namespace Model
     /// </summary>
     public class Adult : PersonBase
     {
+        //TODO: domain
         /// <summary>
         /// Number of adult's passport.
         /// </summary>
@@ -36,6 +37,7 @@ namespace Model
         /// </summary>
         protected const int MaxAge = 150;
 
+        //TODO: domain
         /// <summary>
         /// Low bound of passport number range.
         /// </summary>

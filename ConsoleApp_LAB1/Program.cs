@@ -9,11 +9,13 @@ namespace ConsoleApp_LAB1
     /// </summary>
     internal class Program
     {
+        //TODO: RSDN
         /// <summary>
         /// Class Main.
         /// </summary>
         static void Main(string[] args)
         {
+            //TODO: to const
             Console.WriteLine("Let's create a list and add 7 people.");
             Console.WriteLine();
             var listOfPeople = new PersonList();
