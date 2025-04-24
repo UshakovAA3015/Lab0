@@ -168,7 +168,6 @@ namespace Model
         /// language.</exception>
         private void CheckSameLanguage(string word1, string word2)
         {
-            //TODO: rewrite+
             if ((!string.IsNullOrEmpty(word1))
                 && (!string.IsNullOrEmpty(word2)))
             {

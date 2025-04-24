@@ -11,7 +11,6 @@ namespace Model
     /// </summary>
     public class Adult : PersonBase
     {
-        //TODO: domain+
         /// <summary>
         /// Number of adult's passport.
         /// </summary>
@@ -37,7 +36,6 @@ namespace Model
         /// </summary>
         protected const int MaxAge = 125;
 
-        //TODO: domain+
         /// <summary>
         /// Low bound of passport number range.
         /// </summary>
@@ -158,7 +156,8 @@ namespace Model
         /// be in a certain range.</exception>
         private static void CheckPassportNumber(int passportNumber)
         {
-            if (passportNumber  < PassportLowBound || passportNumber > PassportHighBound)
+            if (passportNumber  < PassportLowBound 
+                || passportNumber > PassportHighBound)
             {
                 throw new IndexOutOfRangeException($"Passport number must" +
                     $" be in range [{PassportLowBound}:" +
@@ -166,10 +165,12 @@ namespace Model
             }
         }
 
+        //TODO: RSDN
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
         private static Random random = new Random();
+
         /// <summary>
         /// Method which allows to enter a random adult.
         /// </summary>
