@@ -184,7 +184,7 @@ namespace Model
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>
