@@ -170,7 +170,7 @@ namespace Model
         public static Adult GetRandomParent(Gender gender)
         {
   
-            var parentStatus = random.Next(1, 5);
+            var parentStatus = _random.Next(1, 5);
             if (parentStatus == 1)
             {
                 return null;
@@ -184,7 +184,7 @@ namespace Model
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
-        private static readonly Random random = new Random();
+        private static readonly Random _random = new Random();
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>
@@ -216,27 +216,27 @@ namespace Model
             };
 
 
-            var tmpNumber = random.Next(1, 3);
+            var tmpNumber = _random.Next(1, 3);
 
             Gender tmpGender = tmpNumber == 1
                 ? Gender.Male
                 : Gender.Female;
 
             string tmpName = tmpGender == Gender.Male
-                ? maleNames[random.Next(maleNames.Length)]
-                : femaleNames[random.Next(femaleNames.Length)];
+                ? maleNames[_random.Next(maleNames.Length)]
+                : femaleNames[_random.Next(femaleNames.Length)];
 
-            var tmpSurname = surnames[random.Next(surnames.Length)];
+            var tmpSurname = surnames[_random.Next(surnames.Length)];
 
-            var tmpAge = random.Next(MinAge + 1, MaxAge);
+            var tmpAge = _random.Next(MinAge + 1, MaxAge);
 
             Adult tmpFather = GetRandomParent(Gender.Male);
 
             Adult tmpMother = GetRandomParent(Gender.Female);
 
-            var schoolStatus = random.Next(1, 3);
+            var schoolStatus = _random.Next(1, 3);
             string tmpSchool = schoolStatus == 1
-                ? schools[random.Next(schools.Length)]
+                ? schools[_random.Next(schools.Length)]
                 : null;
 
             return new Child(tmpName, tmpSurname, tmpAge, tmpGender,
