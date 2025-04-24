@@ -165,7 +165,6 @@ namespace Model
             }
         }
 
-        //TODO: RSDN+
         /// <summary>
         /// Copy of the random number generator
         /// </summary>
