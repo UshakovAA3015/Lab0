@@ -169,8 +169,8 @@ namespace Model
         /// <exception cref="ArgumentException">Only input 1 or 2.</exception>
         public static Adult GetRandomParent(Gender gender)
         {
-            var random = new Random();
-            var parentStatus = random.Next(1, 3);
+  
+            var parentStatus = random.Next(1, 5);
             if (parentStatus == 1)
             {
                 return null;
@@ -181,6 +181,7 @@ namespace Model
             }
         }
 
+        private static Random random = new Random();
         /// <summary>
         /// Method which allows to enter a random child.
         /// </summary>
@@ -207,12 +208,11 @@ namespace Model
 
             string[] schools =
             {
-                "TUSUR", "TPU", "FEFU",
-                "SFU", "MIT", "FESHU",
-                "MEI"
+                "TUSUR", "TPU", "NSTU",
+                "SFU", "MIT","MEI"
             };
 
-            var random = new Random();
+
             var tmpNumber = random.Next(1, 3);
 
             Gender tmpGender = tmpNumber == 1

@@ -11,7 +11,7 @@ namespace Model
     /// </summary>
     public class Adult : PersonBase
     {
-        //TODO: domain
+        //TODO: domain+
         /// <summary>
         /// Number of adult's passport.
         /// </summary>
@@ -35,13 +35,13 @@ namespace Model
         /// <summary>
         /// Maximum age value.
         /// </summary>
-        protected const int MaxAge = 150;
+        protected const int MaxAge = 125;
 
-        //TODO: domain
+        //TODO: domain+
         /// <summary>
         /// Low bound of passport number range.
         /// </summary>
-        private const int PassportLowBound = 100000;
+        private const int PassportLowBound = 0;
 
         /// <summary>
         /// High bound of passport number range.
@@ -166,6 +166,7 @@ namespace Model
             }
         }
 
+        private static Random random = new Random();
         /// <summary>
         /// Method which allows to enter a random adult.
         /// </summary>
@@ -202,7 +203,7 @@ namespace Model
                 "Bank of America", "Sber"
             };
 
-            var random = new Random();
+
 
             if (gender == Gender.Unknown)
             {

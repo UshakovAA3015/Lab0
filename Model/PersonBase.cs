@@ -125,7 +125,7 @@ namespace Model
             var cyrillicSymbols = new Regex
                 (@"^[А-я]+(-[А-я])?[А-я]*$");
 
-            if (string.IsNullOrEmpty(name) == false)
+            if (!string.IsNullOrEmpty(name))
             {
                 if (latinSymbols.IsMatch(name))
                 {
@@ -168,9 +168,9 @@ namespace Model
         /// language.</exception>
         private void CheckSameLanguage(string word1, string word2)
         {
-            //TODO: rewrite
-            if ((string.IsNullOrEmpty(word1) == false)
-                && (string.IsNullOrEmpty(word2) == false))
+            //TODO: rewrite+
+            if ((!string.IsNullOrEmpty(word1))
+                && (!string.IsNullOrEmpty(word2)))
             {
                 var word1Language = CheckStringLanguage(word1);
                 var word2Language = CheckStringLanguage(word2);
