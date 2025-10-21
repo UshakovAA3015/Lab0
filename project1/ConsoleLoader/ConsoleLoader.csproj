@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3DFEC52E-0D94-409C-97B5-95BC788553E0}</ProjectGuid>
+    <ProjectGuid>{EB7AAB05-3310-46B4-A21B-9AFDCE504AC6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleApp_LAB1</RootNamespace>
-    <AssemblyName>ConsoleApp_LAB1</AssemblyName>
+    <RootNamespace>ConsoleLoader</RootNamespace>
+    <AssemblyName>ConsoleLoader</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddConsoleFigure.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{3dc29273-563d-4369-9178-0bba18989a2a}</Project>
+      <Project>{91f3ff9a-dab0-4a33-94d8-398df3821eb6}</Project>
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Model;
 
-namespace ConsoleLoader_3
+namespace ConsoleLoader
 {
     /// <summary>
     /// Класс для тестирования библиотеки классов Model
@@ -74,7 +74,7 @@ namespace ConsoleLoader_3
         public static void GetVolumeInfo(FigureBase figure)
         {
             Console.WriteLine($"Объем фигуры равен " +
-                $"{figure.Volume} м^3.");
+                $"{Math.Round(figure.Volume, 2)} м^3.");
         }
     }
 }
