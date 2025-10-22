@@ -34,36 +34,36 @@ namespace ConsoleLoader
                 var consoleKey = Console.ReadLine();
                 switch (consoleKey)
                 {
-                    //TODO: RSDN
+                    //TODO: RSDN+
                     case "1":
-                        {
-                            GetVolumeInfo(AddConsoleFigure.
-                                GetNewPyramidFromKeyboard());
-                            break;
-                        }
+                    {
+                        GetVolumeInfo(AddConsoleFigure.
+                            GetNewPyramidFromKeyboard());
+                        break;
+                    }
                     case "2":
-                        {
-                            GetVolumeInfo(AddConsoleFigure.
-                                GetNewParallelepipedFromKeyboard());
-                            break;
-                        }
+                    {
+                        GetVolumeInfo(AddConsoleFigure.
+                            GetNewParallelepipedFromKeyboard());
+                        break;
+                    }
                     case "3":
-                        {
-                            GetVolumeInfo(AddConsoleFigure.
-                                GetNewBallFromKeyboard());
-                            break;
-                        }
+                    {
+                        GetVolumeInfo(AddConsoleFigure.
+                            GetNewBallFromKeyboard());
+                        break;
+                    }
                     case "4":
-                        {
-                            Environment.Exit(0);
-                            break;
-                        }
+                    {
+                        Environment.Exit(0);
+                        break;
+                    }
                     default:
-                        {
-                            Console.WriteLine("Программа не ожидает такого ответа." +
-                                "Ожидается целое число от 1 до 4.");
-                            break;
-                        }
+                    {
+                        Console.WriteLine("Программа не ожидает такого ответа." +
+                            "Ожидается целое число от 1 до 4.");
+                        break;
+                    }
                 }
             }
         }

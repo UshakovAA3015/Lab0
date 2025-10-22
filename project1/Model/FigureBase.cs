@@ -17,18 +17,18 @@ namespace Model
         /// </summary>
         public abstract double Volume { get; }
 
-        //TODO: incapsulation
+        //TODO: incapsulation+
         /// <summary>
         /// Метод проверки числа
         /// </summary>
         /// <param name="number">Число для проверки</param>
         /// <returns>Корректное число</returns>
-        public static double CheckNumber(double number)
+        protected static double CheckNumber(double number)
         {
-            if (number < 0)
+            if (number <= 0)
             {
                 throw new ArgumentOutOfRangeException("Величина должна " +
-                    "быть положительным числом!");
+                    "быть больше нуля!");
             }
             else
             {
