@@ -34,7 +34,6 @@ namespace ConsoleLoader
                 var consoleKey = Console.ReadLine();
                 switch (consoleKey)
                 {
-                    //TODO: RSDN+
                     case "1":
                     {
                         GetVolumeInfo(AddConsoleFigure.
