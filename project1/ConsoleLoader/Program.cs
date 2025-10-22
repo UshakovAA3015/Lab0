@@ -38,19 +38,19 @@ namespace ConsoleLoader
                     case "1":
                     {
                         GetVolumeInfo(AddConsoleFigure.
-                            GetNewPyramidFromKeyboard());
+                        GetNewPyramidFromKeyboard());
                         break;
                     }
                     case "2":
                     {
                         GetVolumeInfo(AddConsoleFigure.
-                            GetNewParallelepipedFromKeyboard());
+                        GetNewParallelepipedFromKeyboard());
                         break;
                     }
                     case "3":
                     {
                         GetVolumeInfo(AddConsoleFigure.
-                            GetNewBallFromKeyboard());
+                        GetNewBallFromKeyboard());
                         break;
                     }
                     case "4":
@@ -61,7 +61,7 @@ namespace ConsoleLoader
                     default:
                     {
                         Console.WriteLine("Программа не ожидает такого ответа." +
-                            "Ожидается целое число от 1 до 4.");
+                        "Ожидается целое число от 1 до 4.");
                         break;
                     }
                 }
