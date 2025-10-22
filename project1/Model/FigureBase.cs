@@ -17,6 +17,7 @@ namespace Model
         /// </summary>
         public abstract double Volume { get; }
 
+        //TODO: incapsulation
         /// <summary>
         /// Метод проверки числа
         /// </summary>

@@ -11,7 +11,6 @@ namespace Model
     /// </summary>
     public class Ball : FigureBase
     {
-
         /// <summary>
         /// Радиус шара
         /// </summary>
