@@ -207,7 +207,6 @@ namespace Lab4
             this.MinimizeBox = false;
             this.Name = "AddFigureForm";
             this.Text = "Добавить фигуру";
-            this.Load += new System.EventHandler(this.AddFigureForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
