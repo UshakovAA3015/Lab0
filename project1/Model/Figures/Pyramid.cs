@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Model.Figures
 {
+    [Serializable]
     /// <summary>
-    /// Параллелепипед
+    /// Класс Пирамида
     /// </summary>
-    public class Parallelepiped : FigureBase
+    public class Pyramid : FigureBase
     {
         /// <summary>
         /// Длина
@@ -37,7 +38,7 @@ namespace Model
             }
             set
             {
-                CheckNumber(value);
+                CheckingNumber(value);
                 _length = value;
             }
         }
@@ -53,13 +54,13 @@ namespace Model
             }
             set
             {
-                CheckNumber(value);
+                CheckingNumber(value);
                 _width = value;
             }
         }
 
         /// <summary>
-        /// Свойство - высота
+        /// Свойство - площадь основания
         /// </summary>
         public double Height
         {
@@ -69,20 +70,27 @@ namespace Model
             }
             set
             {
-                CheckNumber(value);
+                CheckingNumber(value);
                 _height = value;
             }
         }
 
         /// <summary>
-        /// Свойство - вычисление объёма параллелепипеда
+        /// Тип фигуры
         /// </summary>
-        /// <retutns>Объём паралеллепипеда</retutns>
+        public override string FigureType => "Пирамида";
+
+
+        /// <summary>
+        /// Вычисление объема пирамиды
+        /// </summary>
+        /// <retutns>Объём пирамиды</retutns>
+
         public override double Volume
         {
             get
             {
-                return Length * Width * Height;
+                return Length * Width * Height * 1 / 3;
             }
         }
     }
