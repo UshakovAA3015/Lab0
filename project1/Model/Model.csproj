@@ -41,10 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ball.cs" />
+    <Compile Include="Figures\Ball.cs" />
+    <Compile Include="RandomFigure.cs" />
     <Compile Include="FigureBase.cs" />
-    <Compile Include="Parallelepiped.cs" />
-    <Compile Include="Pyramid.cs" />
+    <Compile Include="Figures\Parallelepiped.cs" />
+    <Compile Include="Figures\Pyramid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
