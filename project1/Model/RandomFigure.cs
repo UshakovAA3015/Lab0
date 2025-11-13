@@ -26,7 +26,7 @@ namespace Model
         /// <summary>
         /// Минимальное значение параметра
         /// </summary>
-        private const int MINVALUE = 0;
+        private const int MINVALUE = 1;
 
         /// <summary>
         /// Значение делителя 

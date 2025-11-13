@@ -158,5 +158,10 @@ namespace Lab4
         {
             Close();
         }
+
+        private void SearchFigureForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

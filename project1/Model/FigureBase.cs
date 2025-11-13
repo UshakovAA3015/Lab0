@@ -32,7 +32,7 @@ namespace Model
         /// <returns>Корректное число</returns>
         public static double CheckingNumber(double number)
         {
-            if (number < 0)
+            if (number <= 0)
             {
                 throw new ArgumentOutOfRangeException("Величина должна " +
                     "быть положительным числом!");
