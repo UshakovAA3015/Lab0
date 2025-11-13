@@ -323,6 +323,7 @@ namespace Lab4
             Close();
         }
 
+        //TODO: remove
         private void AddFigureForm_Load(object sender, EventArgs e)
         {
 

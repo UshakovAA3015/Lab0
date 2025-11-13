@@ -124,7 +124,8 @@ namespace Lab4
             else
             {
                 // Сброс фильтра, когда отфильтрованный список пуст, а основной нет
-                if (_listForSearch.Count == 0 && DataFigureView.DataSource == _listForSearch)
+                if (_listForSearch.Count == 0 
+                    && DataFigureView.DataSource == _listForSearch)
                 {
                     DropFilterButton_Click(this, EventArgs.Empty);
                 }
