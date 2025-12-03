@@ -5,7 +5,7 @@ using Model;
 using System.IO;
 using System.Xml.Serialization;
 using Model.Figures;
-
+using System.Linq;
 
 namespace Lab4
 {
@@ -26,28 +26,27 @@ namespace Lab4
             DataFigureView.RowHeadersVisible = false;
             DropFilterButton.Enabled = false;
             DataFigureView.MultiSelect = false;
-
         }
 
         /// <summary>
 		/// Cписок фигур
 		/// </summary>
-		private BindingList<FigureBase> _figureList = 
+		private BindingList<FigureBase> _figureList =
             new BindingList<FigureBase>();
 
         /// <summary>
         /// Лист фильтрованных фигур
         /// </summary>
-        private readonly BindingList<FigureBase> _listForSearch = 
+        private readonly BindingList<FigureBase> _listForSearch =
             new BindingList<FigureBase>();
 
 
         /// <summary>
         /// Для файлов
         /// </summary>
-        private readonly XmlSerializer _serializer = 
+        private readonly XmlSerializer _serializer =
             new XmlSerializer(typeof(BindingList<FigureBase>));
-        
+
         /// <summary>
         /// Событие при загрузке формы
         /// </summary>
@@ -92,46 +91,103 @@ namespace Lab4
         }
 
         /// <summary>
-        /// Событие при удалении фигуры
+        /// Проверяет, находится ли сейчас DataGridView в режиме фильтрации
         /// </summary>
+        /// <returns>True если показывается фильтрованный список</returns>
+        private bool IsFilteredView()
+        {
+            return DataFigureView.DataSource == _listForSearch;
+        }
+
+        /// <summary>
+        /// Обработчик нажатия кнопки Удалить выбранную фигуру
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DeleteFigureButton_Click(object sender, EventArgs e)
         {
-            if (!EnsureFigureListNotEmpty()) return;
-
-            if (DataFigureView.SelectedRows.Count == 0)
+            if (IsFilteredView())
             {
-                MessageBox.Show("Выберите фигуру для удаления.",
-                    "Информация", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                return;
-            }
-
-            int selectedIndex = DataFigureView.SelectedRows[0].Index;
-            if (DataFigureView.DataSource == _listForSearch)
-            {
-                var figureToRemove = _listForSearch[selectedIndex];
-                _listForSearch.RemoveAt(selectedIndex);
-                _figureList.Remove(figureToRemove);
-            }
-            else
-            {
-                _figureList.RemoveAt(selectedIndex);
-            }
-            if (_figureList.Count == 0)
-            {
-                DropFilterButton_Click(this, EventArgs.Empty);
-            }
-            else
-            {
-                // Сброс фильтра, когда отфильтрованный список пуст, а основной нет
-                if (_listForSearch.Count == 0 
-                    && DataFigureView.DataSource == _listForSearch)
+                if (_listForSearch.Count == 0)
                 {
-                    DropFilterButton_Click(this, EventArgs.Empty);
+                    MessageBox.Show("Фильтрованный список пуст.",
+                        "Информация", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (DataFigureView.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Выберите фигуру для удаления.",
+                        "Информация", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                int selectedIndex = DataFigureView.SelectedRows[0].Index;
+                var selectedFigure = _listForSearch[selectedIndex];
+
+                var result = MessageBox.Show(
+                    $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3}) из фильтрованного списка?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                if (result == DialogResult.Yes)
+                {
+                    _listForSearch.RemoveAt(selectedIndex);
+                    _figureList.Remove(selectedFigure);
+
+                    if (_listForSearch.Count == 0)
+                    {
+                        DropFilterButton_Click(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        CreateTable(_listForSearch, DataFigureView);
+                    }
+                }
+            }
+            else
+            {
+                if (!EnsureFigureListNotEmpty()) return;
+
+                if (DataFigureView.SelectedRows.Count == 0)
+                {
+                    MessageBox.Show("Выберите фигуру для удаления.",
+                        "Информация", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
+
+                int selectedIndex = DataFigureView.SelectedRows[0].Index;
+                var selectedFigure = _figureList[selectedIndex];
+
+                var result = MessageBox.Show(
+                    $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3})?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                if (result == DialogResult.Yes)
+                {
+                    _figureList.RemoveAt(selectedIndex);
+                                        if (_listForSearch.Contains(selectedFigure))
+                    {
+                        _listForSearch.Remove(selectedFigure);
+                    }
+
+                    if (_figureList.Count == 0)
+                    {
+                        _listForSearch.Clear();
+                        CreateTable(_figureList, DataFigureView);
+                    }
                 }
             }
         }
-        
+
         /// <summary>
         /// Событие при загрузке файла
         /// </summary>
@@ -155,7 +211,7 @@ namespace Lab4
                 }
                 DataFigureView.DataSource = _figureList;
                 DataFigureView.CurrentCell = null;
-                MessageBox.Show("Файл успешно загружен.", 
+                MessageBox.Show("Файл успешно загружен.",
                     "Загрузка завершена",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -167,7 +223,7 @@ namespace Lab4
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
         }
-        
+
         /// <summary>
         /// Событие при сохранении файла
         /// </summary>
@@ -191,7 +247,7 @@ namespace Lab4
                     _serializer.Serialize(fileStream, _figureList);
                 }
                 MessageBox.Show("Файл успешно сохранён.",
-                    "Сохранение завершено", 
+                    "Сохранение завершено",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -204,7 +260,7 @@ namespace Lab4
             var newFigure = RandomFigure.GetRandomFigure();
             _figureList.Add(newFigure);
         }
-        
+
         /// <summary>
         /// Событие при поиске фигуры
         /// </summary>
@@ -215,7 +271,7 @@ namespace Lab4
             SearchFigureButton.Enabled = false;
             figureSearch.FormClosed += (s, args) =>
             {
-                // Активировать кнопку обратно после закрытия окна
+                
                 SearchFigureButton.Enabled = true;
             };
             figureSearch.Show();
@@ -244,7 +300,7 @@ namespace Lab4
             RandomFigureButton.Enabled = false;
         }
 
-        // <summary>
+        /// <summary>
         /// Обработчик события при сбросе фильтрации
         /// </summary>
         /// <param name="sender"></param>
@@ -262,29 +318,72 @@ namespace Lab4
         }
 
         /// <summary>
-        /// Событие при очистке всего списка
+        /// Обработчик нажатия кнопки Удалить все фигуры
         /// </summary>
         private void DeleteAllFugureButton_Click(object sender, EventArgs e)
         {
-            if (!EnsureFigureListNotEmpty()) return;
-
-            var result = MessageBox.Show("Вы уверены, что " +
-                "хотите удалить все фигуры из списка?",
-                "Подтверждение", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            if (IsFilteredView())
             {
-                _figureList.Clear();
-                _listForSearch.Clear();
-                DataFigureView.DataSource = null;
-                CreateTable(_figureList, DataFigureView);
+                if (_listForSearch.Count == 0)
+                {
+                    MessageBox.Show("Фильтрованный список пуст.",
+                        "Информация", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    return;
+                }
 
-                // Сброс фильтра
-                DropFilterButton_Click(this, EventArgs.Empty);
+                var result = MessageBox.Show(
+                    $"Вы уверены, что хотите удалить все фигуры ({_listForSearch.Count} шт.) из фильтрованного списка?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
 
-                MessageBox.Show("Список фигур успешно очищен.",
-                    "Успех", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                if (result == DialogResult.Yes)
+                {
+                    foreach (var figure in _listForSearch.ToList())
+                    {
+                        _figureList.Remove(figure);
+                    }
+                    _listForSearch.Clear();
+
+                    if (_figureList.Count == 0)
+                    {
+                        CreateTable(_figureList, DataFigureView);
+                        DropFilterButton_Click(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        CreateTable(_listForSearch, DataFigureView);
+                    }
+
+                    MessageBox.Show($"Удалено {_listForSearch.Count} фигур из фильтрованного списка.",
+                        "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                if (!EnsureFigureListNotEmpty()) return;
+
+                var result = MessageBox.Show(
+                    $"Вы уверены, что хотите удалить все фигуры ({_figureList.Count} шт.)?",
+                    "Подтверждение удаления",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question,
+                    MessageBoxDefaultButton.Button2);
+
+                if (result == DialogResult.Yes)
+                {
+                    _figureList.Clear();
+                    _listForSearch.Clear();
+                    DataFigureView.DataSource = null;
+                    CreateTable(_figureList, DataFigureView);
+
+                    MessageBox.Show("Список фигур успешно очищен.",
+                        "Успех", MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
             }
         }
 
