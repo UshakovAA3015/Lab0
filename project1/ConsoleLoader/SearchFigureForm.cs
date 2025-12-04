@@ -158,8 +158,5 @@ namespace Lab4
         {
             Close();
         }
-
-        //TODO: remove+
-
     }
 }

@@ -142,8 +142,9 @@ namespace Lab4
 
                 int selectedIndex = DataFigureView.SelectedRows[0].Index;
                 var selectedFigure = _listForSearch[selectedIndex];
-
+                //TODO: duplication
                 var result = MessageBox.Show(
+                    //TODO: RSDN
                     $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3}) из фильтрованного списка?",
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
@@ -180,7 +181,9 @@ namespace Lab4
                 int selectedIndex = DataFigureView.SelectedRows[0].Index;
                 var selectedFigure = _figureList[selectedIndex];
 
+                //TODO: duplication
                 var result = MessageBox.Show(
+                    //TODO: RSDN
                     $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3})?",
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
@@ -348,6 +351,7 @@ namespace Lab4
                     return;
                 }
 
+                //TODO: duplication//TODO: RSDN
                 var result = MessageBox.Show(
                     $"Вы уверены, что хотите удалить все фигуры ({_listForSearch.Count} шт.) из фильтрованного списка?",
                     "Подтверждение удаления",
@@ -381,7 +385,7 @@ namespace Lab4
             else
             {
                 if (!EnsureFigureListNotEmpty()) return;
-
+                //TODO: duplication
                 var result = MessageBox.Show(
                     $"Вы уверены, что хотите удалить все фигуры ({_figureList.Count} шт.)?",
                     "Подтверждение удаления",
