@@ -26,6 +26,7 @@ namespace Lab4
             DataFigureView.RowHeadersVisible = false;
             DropFilterButton.Enabled = false;
             DataFigureView.MultiSelect = false;
+            DataFigureView.KeyDown += DataFigureView_KeyDown;
         }
 
         /// <summary>
@@ -91,6 +92,20 @@ namespace Lab4
         }
 
         /// <summary>
+        /// Создание быстрой клавиши для уаления
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DataFigureView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                e.Handled = true;
+                DeleteFigureButton_Click(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Проверяет, находится ли сейчас DataGridView в режиме фильтрации
         /// </summary>
         /// <returns>True если показывается фильтрованный список</returns>
@@ -98,6 +113,7 @@ namespace Lab4
         {
             return DataFigureView.DataSource == _listForSearch;
         }
+
 
         /// <summary>
         /// Обработчик нажатия кнопки Удалить выбранную фигуру
@@ -132,7 +148,7 @@ namespace Lab4
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
+                    MessageBoxDefaultButton.Button1);
 
                 if (result == DialogResult.Yes)
                 {
@@ -169,7 +185,7 @@ namespace Lab4
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
+                    MessageBoxDefaultButton.Button1);
 
                 if (result == DialogResult.Yes)
                 {
@@ -324,7 +340,7 @@ namespace Lab4
         {
             if (IsFilteredView())
             {
-                if (_listForSearch.Count == 0)
+                if (sender is DataGridView && DataFigureView.SelectedRows.Count == 0)
                 {
                     MessageBox.Show("Фильтрованный список пуст.",
                         "Информация", MessageBoxButtons.OK,
@@ -337,7 +353,7 @@ namespace Lab4
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
+                    MessageBoxDefaultButton.Button1);
 
                 if (result == DialogResult.Yes)
                 {
@@ -371,7 +387,7 @@ namespace Lab4
                     "Подтверждение удаления",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button2);
+                    MessageBoxDefaultButton.Button1);
 
                 if (result == DialogResult.Yes)
                 {
