@@ -159,10 +159,7 @@ namespace Lab4
             Close();
         }
 
-        //TODO: remove
-        private void SearchFigureForm_Load(object sender, EventArgs e)
-        {
+        //TODO: remove+
 
-        }
     }
 }

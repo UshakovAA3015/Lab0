@@ -157,7 +157,6 @@ namespace Lab4
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "SearchFigureForm";
             this.Text = "Поиск";
-            this.Load += new System.EventHandler(this.SearchFigureForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
