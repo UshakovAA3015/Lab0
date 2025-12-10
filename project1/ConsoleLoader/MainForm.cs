@@ -30,9 +30,9 @@ namespace Lab4
         }
 
         /// <summary>
-		/// Cписок фигур
-		/// </summary>
-		private BindingList<FigureBase> _figureList =
+        /// Cписок фигур
+        /// </summary>
+        private BindingList<FigureBase> _figureList =
             new BindingList<FigureBase>();
 
         /// <summary>
@@ -55,6 +55,7 @@ namespace Lab4
         {
             CreateTable(_figureList, DataFigureView);
         }
+
 
 
         /// <summary>
@@ -114,6 +115,67 @@ namespace Lab4
             return DataFigureView.DataSource == _listForSearch;
         }
 
+        /// <summary>
+        /// Формирует сообщение для удаления одной фигуры
+        /// </summary>
+        /// <param name="figure">Фигура для удаления</param>
+        /// <param name="fromFilteredList">Удаляется из фильтрованного списка</param>
+        /// <returns>Сформированное сообщение</returns>
+        private string BuildDeleteSingleFigureMessage(FigureBase figure, bool fromFilteredList)
+        {
+            var messageBuilder = new System.Text.StringBuilder();
+
+            messageBuilder.Append($"Вы уверены, что хотите удалить фигуру ");
+            messageBuilder.Append($"'{figure.GetType().Name}' ");
+            messageBuilder.Append($"(Объём: {figure.Volume:F3})");
+
+            if (fromFilteredList)
+            {
+                messageBuilder.Append(" из фильтрованного списка");
+            }
+
+            messageBuilder.Append("?");
+
+            return messageBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Формирует сообщение для удаления всех фигур
+        /// </summary>
+        /// <param name="count">Количество фигур для удаления</param>
+        /// <param name="fromFilteredList">Удаляются из фильтрованного списка</param>
+        /// <returns>Сформированное сообщение</returns>
+        private string BuildDeleteAllFiguresMessage(int count, bool fromFilteredList)
+        {
+            var messageBuilder = new System.Text.StringBuilder();
+
+            messageBuilder.Append($"Вы уверены, что хотите удалить все фигуры ");
+            messageBuilder.Append($"({count} шт.)");
+
+            if (fromFilteredList)
+            {
+                messageBuilder.Append(" из фильтрованного списка");
+            }
+
+            messageBuilder.Append("?");
+
+            return messageBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Показывает сообщение с подтверждением удаления
+        /// </summary>
+        /// <param name="message">Текст сообщения</param>
+        /// <returns>Результат диалога</returns>
+        private DialogResult ShowDeleteConfirmation(string message)
+        {
+            return MessageBox.Show(
+                message,
+                "Подтверждение удаления",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+        }
 
         /// <summary>
         /// Обработчик нажатия кнопки Удалить выбранную фигуру
@@ -142,14 +204,9 @@ namespace Lab4
 
                 int selectedIndex = DataFigureView.SelectedRows[0].Index;
                 var selectedFigure = _listForSearch[selectedIndex];
-                //TODO: duplication
-                var result = MessageBox.Show(
-                    //TODO: RSDN
-                    $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3}) из фильтрованного списка?",
-                    "Подтверждение удаления",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
+
+                var message = BuildDeleteSingleFigureMessage(selectedFigure, true);
+                var result = ShowDeleteConfirmation(message);
 
                 if (result == DialogResult.Yes)
                 {
@@ -181,19 +238,13 @@ namespace Lab4
                 int selectedIndex = DataFigureView.SelectedRows[0].Index;
                 var selectedFigure = _figureList[selectedIndex];
 
-                //TODO: duplication
-                var result = MessageBox.Show(
-                    //TODO: RSDN
-                    $"Вы уверены, что хотите удалить фигуру '{selectedFigure.GetType().Name}' (Объём: {selectedFigure.Volume:F3})?",
-                    "Подтверждение удаления",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
+                var message = BuildDeleteSingleFigureMessage(selectedFigure, false);
+                var result = ShowDeleteConfirmation(message);
 
                 if (result == DialogResult.Yes)
                 {
                     _figureList.RemoveAt(selectedIndex);
-                                        if (_listForSearch.Contains(selectedFigure))
+                    if (_listForSearch.Contains(selectedFigure))
                     {
                         _listForSearch.Remove(selectedFigure);
                     }
@@ -290,7 +341,7 @@ namespace Lab4
             SearchFigureButton.Enabled = false;
             figureSearch.FormClosed += (s, args) =>
             {
-                
+
                 SearchFigureButton.Enabled = true;
             };
             figureSearch.Show();
@@ -351,13 +402,9 @@ namespace Lab4
                     return;
                 }
 
-                //TODO: duplication//TODO: RSDN
-                var result = MessageBox.Show(
-                    $"Вы уверены, что хотите удалить все фигуры ({_listForSearch.Count} шт.) из фильтрованного списка?",
-                    "Подтверждение удаления",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
+                var count = _listForSearch.Count;
+                var message = BuildDeleteAllFiguresMessage(count, true);
+                var result = ShowDeleteConfirmation(message);
 
                 if (result == DialogResult.Yes)
                 {
@@ -365,6 +412,8 @@ namespace Lab4
                     {
                         _figureList.Remove(figure);
                     }
+
+                    var deletedCount = count;
                     _listForSearch.Clear();
 
                     if (_figureList.Count == 0)
@@ -377,7 +426,7 @@ namespace Lab4
                         CreateTable(_listForSearch, DataFigureView);
                     }
 
-                    MessageBox.Show($"Удалено {_listForSearch.Count} фигур из фильтрованного списка.",
+                    MessageBox.Show($"Удалено {deletedCount} фигур из фильтрованного списка.",
                         "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
@@ -385,13 +434,10 @@ namespace Lab4
             else
             {
                 if (!EnsureFigureListNotEmpty()) return;
-                //TODO: duplication
-                var result = MessageBox.Show(
-                    $"Вы уверены, что хотите удалить все фигуры ({_figureList.Count} шт.)?",
-                    "Подтверждение удаления",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question,
-                    MessageBoxDefaultButton.Button1);
+
+                var count = _figureList.Count;
+                var message = BuildDeleteAllFiguresMessage(count, false);
+                var result = ShowDeleteConfirmation(message);
 
                 if (result == DialogResult.Yes)
                 {
@@ -400,7 +446,7 @@ namespace Lab4
                     DataFigureView.DataSource = null;
                     CreateTable(_figureList, DataFigureView);
 
-                    MessageBox.Show("Список фигур успешно очищен.",
+                    MessageBox.Show($"Удалено {count} фигур. Список фигур успешно очищен.",
                         "Успех", MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }

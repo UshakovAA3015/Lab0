@@ -145,10 +145,7 @@ namespace Lab4
                     "Информация", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
-            CheckBoxParallelepiped.Checked = false;
-            CheckBoxPyramid.Checked = false;
-            CheckBoxBall.Checked = false;
-            CheckBoxVolume.Checked = false;
+
         }
 
         /// <summary>
