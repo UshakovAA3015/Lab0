@@ -62,7 +62,6 @@ namespace Lab4
         /// <param name="e"></param>
         private void ButtonShowFigure_Click(object sender, EventArgs e)
         {
-            // Очищаем результаты предыдущего поиска
             SendDataFromFormEvent?.Invoke(this, new FigureEventArgs(null));
 
             int count = 0;
@@ -78,10 +77,8 @@ namespace Lab4
                 return;
             }
 
-            // Значение объёма, введённое пользователем для фильтрации.
             double filterVolume = 0;
 
-            // Флаг, указывающий, используется ли фильтрация по объёму.
             bool hasVolume = false;
 
             if (CheckBoxVolume.Checked)
@@ -95,7 +92,6 @@ namespace Lab4
                     return;
                 }
 
-                // Проверка, что введено число с запятой
                 if (!double.TryParse(TextBoxVolume.Text,
                     System.Globalization.NumberStyles.Any,
                     new System.Globalization.CultureInfo("ru-RU"),

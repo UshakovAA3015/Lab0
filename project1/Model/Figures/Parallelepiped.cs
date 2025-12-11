@@ -91,5 +91,6 @@ namespace Model.Figures
                 return Length * Width * Height;
             }
         }
+
     }
 }

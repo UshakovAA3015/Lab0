@@ -508,16 +508,18 @@ namespace Lab4
         /// <param name="figures">Список фигур</param>
         /// <param name="dataGridView">Таблица с фигурами</param>
         private static void CreateTable(BindingList<FigureBase> figures,
-            DataGridView dataGridView)
+DataGridView dataGridView)
         {
             dataGridView.DataSource = null;
             dataGridView.DataSource = figures;
 
-            if (figures.Count > 0)
+            if (dataGridView.Columns.Count > 1 && dataGridView.Columns[1] != null)
             {
                 dataGridView.Columns[0].HeaderText = "Фигура";
                 dataGridView.Columns[1].HeaderText = "Объём (м)";
                 dataGridView.Columns[1].DefaultCellStyle.Format = "F3";
+                dataGridView.Columns[1].DefaultCellStyle.Alignment =
+                    DataGridViewContentAlignment.MiddleRight;
             }
 
             dataGridView.AutoSizeColumnsMode =
