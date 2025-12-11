@@ -109,8 +109,7 @@ namespace Lab4
             // 
 #if !DEBUG
             RandomFigureButton.Visible = false;
-            // Или полностью удалить из разметки
-            // RandomFigureButton.Dispose();
+
 #endif
             this.RandomFigureButton.Location = new System.Drawing.Point(20, 300);
             this.RandomFigureButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

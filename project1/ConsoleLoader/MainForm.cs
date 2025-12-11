@@ -422,8 +422,14 @@ namespace Lab4
         /// </summary>
         private void RandomFigureButton_Click(object sender, EventArgs e)
         {
-            var newFigure = RandomFigure.GetRandomFigure();
-            _figureList.Add(newFigure);
+#if DEBUG
+    var newFigure = RandomFigure.GetRandomFigure();
+    _figureList.Add(newFigure);
+#else
+    // В Release режиме либо ничего не делаем, либо показываем сообщение
+    MessageBox.Show("Функция генерации случайных фигур доступна только в Debug режиме.",
+        "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+#endif
         }
 
         /// <summary>
