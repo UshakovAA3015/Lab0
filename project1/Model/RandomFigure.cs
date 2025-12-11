@@ -21,7 +21,7 @@ namespace Model
         /// <summary>
         /// Максимальное значение параметра
         /// </summary>
-        private const int MAXVALUE = 1000;
+        private const int MAXVALUE = 10000;
 
         /// <summary>
         /// Минимальное значение параметра
