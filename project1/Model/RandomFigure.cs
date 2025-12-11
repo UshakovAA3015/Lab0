@@ -31,7 +31,7 @@ namespace Model
         /// <summary>
         /// Значение делителя 
         /// </summary>
-        private const double DIVIDER = 10000.0;
+        private const double DIVIDER = 1000.0;
 
         /// <summary>
         /// Генерация случайного числа double через int
