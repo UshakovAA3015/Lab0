@@ -422,9 +422,8 @@ namespace Lab4
         /// </summary>
         private void RandomFigureButton_Click(object sender, EventArgs e)
         {
-
-    var newFigure = RandomFigure.GetRandomFigure();
-    _figureList.Add(newFigure);
+            var newFigure = RandomFigure.GetRandomFigure();
+            _figureList.Add(newFigure);
         }
 #endif
 
