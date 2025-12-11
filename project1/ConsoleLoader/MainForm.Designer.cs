@@ -35,7 +35,9 @@ namespace Lab4
             this.AddFigureButton = new System.Windows.Forms.Button();
             this.DeleteFigureButton = new System.Windows.Forms.Button();
             this.SearchFigureButton = new System.Windows.Forms.Button();
+#if DEBUG
             this.RandomFigureButton = new System.Windows.Forms.Button();
+#endif
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ToolStripDropDownButtonFile = new System.Windows.Forms.ToolStripDropDownButton();
             this.LoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -104,13 +106,11 @@ namespace Lab4
             this.SearchFigureButton.Text = "Найти...";
             this.SearchFigureButton.UseVisualStyleBackColor = true;
             this.SearchFigureButton.Click += new System.EventHandler(this.SearchFigureButton_Click);
+
+#if DEBUG
             // 
             // RandomFigureButton
             // 
-#if !DEBUG
-            RandomFigureButton.Visible = false;
-
-#endif
             this.RandomFigureButton.Location = new System.Drawing.Point(20, 300);
             this.RandomFigureButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.RandomFigureButton.Name = "RandomFigureButton";
@@ -119,7 +119,9 @@ namespace Lab4
             this.RandomFigureButton.Text = "Случайная фигура";
             this.RandomFigureButton.UseVisualStyleBackColor = true;
             this.RandomFigureButton.Click += new System.EventHandler(this.RandomFigureButton_Click);
-            // 
+            
+#endif
+            //
             // toolStrip1
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -187,7 +189,9 @@ namespace Lab4
             this.Controls.Add(this.DeleteAllFugureButton);
             this.Controls.Add(this.DropFilterButton);
             this.Controls.Add(this.toolStrip1);
+#if DEBUG
             this.Controls.Add(this.RandomFigureButton);
+#endif
             this.Controls.Add(this.SearchFigureButton);
             this.Controls.Add(this.DeleteFigureButton);
             this.Controls.Add(this.AddFigureButton);
@@ -207,13 +211,17 @@ namespace Lab4
 
         }
 
-        #endregion
+#endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button AddFigureButton;
         private System.Windows.Forms.Button DeleteFigureButton;
         private System.Windows.Forms.Button SearchFigureButton;
+
+#if DEBUG
         private System.Windows.Forms.Button RandomFigureButton;
+#endif
+
         private System.Windows.Forms.DataGridView DataFigureView;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripDropDownButton ToolStripDropDownButtonFile;

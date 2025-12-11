@@ -416,25 +416,21 @@ namespace Lab4
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
+#if DEBUG
         /// <summary>
         /// Событие при генерации случайной фигуры
         /// </summary>
         private void RandomFigureButton_Click(object sender, EventArgs e)
         {
-#if DEBUG
+
     var newFigure = RandomFigure.GetRandomFigure();
     _figureList.Add(newFigure);
-#else
-    // В Release режиме либо ничего не делаем, либо показываем сообщение
-    MessageBox.Show("Функция генерации случайных фигур доступна только в Debug режиме.",
-        "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
-#endif
         }
+#endif
 
-        /// <summary>
-        /// Событие при поиске фигуры
-        /// </summary>
+            /// <summary>
+            /// Событие при поиске фигуры
+            /// </summary>
         private void SearchFigureButton_Click(object sender, EventArgs e)
         {
             var figureSearch = new SearchFigureForm(_figureList);
@@ -468,7 +464,9 @@ namespace Lab4
             DropFilterButton.Enabled = true;
             SearchFigureButton.Enabled = false;
             AddFigureButton.Enabled = false;
+#if DEBUG
             RandomFigureButton.Enabled = false;
+#endif
         }
 
         /// <summary>
@@ -483,7 +481,9 @@ namespace Lab4
             DeleteFigureButton.Enabled = true;
             SearchFigureButton.Enabled = true;
             AddFigureButton.Enabled = true;
+#if DEBUG
             RandomFigureButton.Enabled = true;
+#endif
             DropFilterButton.Enabled = false;
             _listForSearch.Clear();
         }
